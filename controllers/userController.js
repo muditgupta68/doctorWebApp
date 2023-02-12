@@ -239,15 +239,12 @@ const updateDoctorData = async (req, res) => {
     newVal.consultationFees = parseInt(newVal.consultationFees);
     newVal.experience = parseInt(newVal.experience);
 
-    let newTime = [];
+    newVal.timings = [
+      moment(newVal.timings[0], "HH:mm").toISOString(),
+      moment(newVal.timings[1], "HH:mm").toISOString()
+    ]
 
-    newVal.timings.map((time) => {
-      newTime.push(moment(time, "HH:mm").toISOString());
-    });
-
-    newVal.timings = newTime;
-
-    // return res.json({newVal});
+    return res.json({newVal});
     // return res.json({check:moment(newTime[0]).format('HH:mm'),newTime});
 
     const updatedData = await DoctorModel.findOneAndUpdate(
