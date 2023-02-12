@@ -244,7 +244,7 @@ const updateDoctorData = async (req, res) => {
       moment(newVal.timings[1], "HH:mm").toISOString()
     ]
 
-    return res.json({newVal});
+//     return res.json({newVal});
     // return res.json({check:moment(newTime[0]).format('HH:mm'),newTime});
 
     const updatedData = await DoctorModel.findOneAndUpdate(
