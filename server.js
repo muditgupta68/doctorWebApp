@@ -33,10 +33,11 @@ app.use("/api/v1/admin", adminRouter);
 //server call
 const start = async () => {
   try {
+    dbConnect();
     app.listen(port, () => {
       console.log(`> Server setup success @${port}`.bgGreen.black);
     });
-    dbConnect();
+
   } catch (error) {
     console.log(`> Unable setup server @${port}`.bgRed.black);
   }

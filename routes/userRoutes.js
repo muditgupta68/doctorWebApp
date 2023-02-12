@@ -25,9 +25,9 @@ const UserRouter = express.Router();
 UserRouter.route("/login").post(loginUser);
 UserRouter.route("/register").post(registerUser);
 UserRouter.route("/")
-  .get(isAuthenticate, getUserData)
+  .post(isAuthenticate, getUserData)
   .patch(isAuthenticate, updateDoctorData);
-UserRouter.route("/logout").get(isAuthenticate, logoutUser);
+UserRouter.route("/logout").post(isAuthenticate, logoutUser);
 
 //notification routes
 UserRouter.route("/clear-Unseen-message").post(
@@ -35,12 +35,13 @@ UserRouter.route("/clear-Unseen-message").post(
   unseenNotification
 );
 UserRouter.route("/clear-seen-message").post(isAuthenticate, seenNotification);
-
 //apply for doctor route
 UserRouter.route("/doctorApplication").post(isAuthenticate, doctorApplication);
-UserRouter.route("/doctor/:id").get(isAuthenticate, getDoctorData);
+// finding doctor using userId
+UserRouter.route("/doctor/:id").post(isAuthenticate, getDoctorData);
 UserRouter.route("/approvedDoc").post(isAuthenticate, doctorApprove);
-UserRouter.route("/singleData/:id").get(isAuthenticate, getSingleDoctorsData);
+// finding doctor using doctorId
+UserRouter.route("/singleData/:id").post(isAuthenticate, getSingleDoctorsData);
 
 //appointment routes
 UserRouter.route("/appointment/new").post(
@@ -53,16 +54,16 @@ UserRouter.route("/bookAvailability/check").post(
   checkAvailability
 );
 
-UserRouter.route("/appointment").get(
+UserRouter.route("/appointment").post(
   isAuthenticate,
   userAppointmentsController
 );
 
-UserRouter.route("/doctor/appointment/data").get(
+UserRouter.route("/doctor/appointment/data").post(
   isAuthenticate,
   doctorAppointmentsController
 );
-UserRouter.route("/doctor/appointment/data").post(
+UserRouter.route("/doctor/appointment/status").post(
   isAuthenticate,
   updateStatus
 );

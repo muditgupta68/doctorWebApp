@@ -72,7 +72,7 @@ const registerUser = async (req, res) => {
 const getUserData = async (req, res) => {
   try {
     const user = req.user;
-    return res.status(200).json({ msg: `User Found`, status: true, user });
+    return res.status(200).json({ msg: `User Found`, status: true,user });
   } catch (error) {
     console.log(error);
     return res
@@ -246,6 +246,9 @@ const updateDoctorData = async (req, res) => {
     });
 
     newVal.timings = newTime;
+
+    // return res.json({newVal});
+    // return res.json({check:moment(newTime[0]).format('HH:mm'),newTime});
 
     const updatedData = await DoctorModel.findOneAndUpdate(
       { userId: newVal.userId },
