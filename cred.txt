@@ -1,0 +1,4 @@
+u-> mudit1086
+pass -> Mudit1086
+
+mongodb+srv://mudit1086:Mudit1086@cluster0.1kk1m69.mongodb.net/doctor_reg?retryWrites=true&w=majority
